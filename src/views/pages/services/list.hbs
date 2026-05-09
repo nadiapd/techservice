@@ -1,0 +1,77 @@
+<div class="bg-white rounded-2xl shadow overflow-hidden">
+
+  <div class="p-6 border-b flex items-center justify-between">
+
+    <h2 class="text-xl font-semibold">
+      Service List
+    </h2>
+
+    <a
+      href="/services/create"
+      class="bg-slate-900 text-white px-4 py-2 rounded-lg"
+    >
+      Add Service
+    </a>
+
+  </div>
+
+  <div class="overflow-x-auto">
+
+    <table class="w-full">
+
+      <thead class="bg-slate-100">
+
+        <tr>
+          <th class="text-left p-4">Tracking</th>
+          <th class="text-left p-4">Customer</th>
+          <th class="text-left p-4">Device</th>
+          <th class="text-left p-4">Status</th>
+          <th class="text-left p-4">Action</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        {{#each services}}
+
+        <tr class="border-b">
+
+          <td class="p-4">
+            {{this.tracking_code}}
+          </td>
+
+          <td class="p-4">
+            {{this.customer_name}}
+          </td>
+
+          <td class="p-4">
+            {{this.device_name}}
+          </td>
+
+          <td class="p-4">
+            {{this.status}}
+          </td>
+
+          <td class="p-4">
+
+            <a
+              href="/services/{{this.id}}"
+              class="text-blue-500"
+            >
+              Detail
+            </a>
+
+          </td>
+
+        </tr>
+
+        {{/each}}
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>

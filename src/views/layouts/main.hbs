@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>{{title}}</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link
+    rel="stylesheet"
+    href="/css/style.css"
+  />
+</head>
+
+<body class="bg-slate-100 text-slate-900 min-h-screen">
+
+  <div class="flex min-h-screen">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-slate-900 text-white p-6">
+
+      <a
+        href="/dashboard"
+        class="text-2xl font-bold block mb-10"
+      >
+        Service Tracker
+      </a>
+
+      <nav class="space-y-3">
+
+        <a
+          href="/dashboard"
+          class="block px-4 py-3 rounded-lg hover:bg-slate-800"
+        >
+          Dashboard
+        </a>
+
+        <a
+          href="/services"
+          class="block px-4 py-3 rounded-lg hover:bg-slate-800"
+        >
+          Services
+        </a>
+
+        <a
+          href="/services/create"
+          class="block px-4 py-3 rounded-lg hover:bg-slate-800"
+        >
+          New Service
+        </a>
+
+        <a
+          href="/customers"
+          class="block px-4 py-3 rounded-lg hover:bg-slate-800"
+        >
+          Customers
+        </a>
+
+        <a
+          href="/categories"
+          class="block px-4 py-3 rounded-lg hover:bg-slate-800"
+        >
+          Categories
+        </a>
+
+        <a
+          href="/tracking"
+          class="block px-4 py-3 rounded-lg hover:bg-slate-800"
+        >
+          Tracking
+        </a>
+
+        <a
+          href="/auth/logout"
+          class="block px-4 py-3 rounded-lg text-red-300 hover:bg-red-500 hover:text-white"
+        >
+          Logout
+        </a>
+
+      </nav>
+
+    </aside>
+
+    <!-- Content -->
+    <div class="flex-1">
+
+      <!-- Header -->
+      <header class="bg-white border-b px-8 py-4">
+
+        <div class="flex items-center justify-between">
+
+          <div>
+            <h1 class="text-2xl font-bold">
+              {{title}}
+            </h1>
+
+            <p class="text-sm text-slate-500">
+              Electronic Service Management System
+            </p>
+          </div>
+
+          <div class="text-sm text-slate-600">
+            Welcome, Admin
+          </div>
+
+        </div>
+
+      </header>
+
+      <!-- Main -->
+      <main class="p-8">
+        {{{body}}}
+      </main>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

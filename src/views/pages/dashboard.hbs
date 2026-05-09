@@ -1,0 +1,111 @@
+{{!-- <div class="space-y-6">
+  <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+    <div>
+      <h1 class="text-3xl font-semibold">{{title}}</h1>
+      <p class="text-slate-600">Overview service dan status terbaru.</p>
+    </div>
+    <a href="/admin/services/create" class="inline-flex items-center rounded-lg bg-sky-600 px-4 py-2 text-white hover:bg-sky-500">Tambah Service</a>
+  </div>
+
+  <div class="grid gap-4 md:grid-cols-4">
+    <div class="rounded-2xl bg-white p-5 shadow-sm">
+      <p class="text-sm text-slate-500">Total Service</p>
+      <p class="mt-3 text-3xl font-semibold">{{summary.totalService}}</p>
+    </div>
+    <div class="rounded-2xl bg-white p-5 shadow-sm">
+      <p class="text-sm text-slate-500">Pending</p>
+      <p class="mt-3 text-3xl font-semibold text-amber-600">{{summary.pending}}</p>
+    </div>
+    <div class="rounded-2xl bg-white p-5 shadow-sm">
+      <p class="text-sm text-slate-500">Completed</p>
+      <p class="mt-3 text-3xl font-semibold text-emerald-600">{{summary.completed}}</p>
+    </div>
+    <div class="rounded-2xl bg-white p-5 shadow-sm">
+      <p class="text-sm text-slate-500">Cancelled</p>
+      <p class="mt-3 text-3xl font-semibold text-red-600">{{summary.cancelled}}</p>
+    </div>
+  </div>
+
+  <section class="grid gap-6 lg:grid-cols-[1.5fr,1fr]">
+    <div class="rounded-2xl bg-white p-6 shadow-sm">
+      <h2 class="text-xl font-semibold">Recent Service</h2>
+      <div class="mt-4 overflow-hidden rounded-xl border border-slate-200">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-slate-50 text-slate-700">
+            <tr>
+              <th class="px-4 py-3">Tracking</th>
+              <th class="px-4 py-3">Customer</th>
+              <th class="px-4 py-3">Status</th>
+              <th class="px-4 py-3">Kategori</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each services}}
+              <tr class="border-t border-slate-100 hover:bg-slate-50">
+                <td class="px-4 py-3 text-sky-600"><a href="/admin/services/{{id}}">{{tracking_code}}</a></td>
+                <td class="px-4 py-3">{{customer.name}}</td>
+                <td class="px-4 py-3 capitalize">{{status}}</td>
+                <td class="px-4 py-3">{{category.category_name}}</td>
+              </tr>
+            {{else}}
+              <tr><td class="px-4 py-4" colspan="4">Belum ada service.</td></tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="rounded-2xl bg-white p-6 shadow-sm">
+      <h2 class="text-xl font-semibold">Kategori Terbanyak</h2>
+      <div class="mt-4 space-y-3">
+        {{#each summary.topCategories}}
+          <div class="rounded-xl bg-slate-50 p-4">
+            <p class="font-medium">{{category_name}}</p>
+            <p class="text-sm text-slate-500">Jumlah service: {{count}}</p>
+          </div>
+        {{else}}
+          <p class="text-slate-600">Belum ada data kategori.</p>
+        {{/each}}
+      </div>
+    </div>
+  </section>
+</div> --}}
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+  <div class="bg-white rounded-2xl shadow p-6">
+
+    <p class="text-slate-500 text-sm">
+      Total Services
+    </p>
+
+    <h2 class="text-4xl font-bold mt-2">
+      {{totalService}}
+    </h2>
+
+  </div>
+
+  <div class="bg-white rounded-2xl shadow p-6">
+
+    <p class="text-slate-500 text-sm">
+      Completed Services
+    </p>
+
+    <h2 class="text-4xl font-bold mt-2 text-green-600">
+      {{completedService}}
+    </h2>
+
+  </div>
+
+  <div class="bg-white rounded-2xl shadow p-6">
+
+    <p class="text-slate-500 text-sm">
+      Pending Services
+    </p>
+
+    <h2 class="text-4xl font-bold mt-2 text-yellow-500">
+      {{pendingService}}
+    </h2>
+
+  </div>
+
+</div>

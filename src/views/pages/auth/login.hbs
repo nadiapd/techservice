@@ -1,0 +1,52 @@
+<div class="min-h-screen flex items-center justify-center">
+
+  <div class="bg-white w-full max-w-md p-8 rounded-2xl shadow">
+
+    <h1 class="text-3xl font-bold text-center mb-8">
+      Admin Login
+    </h1>
+
+    <form action="/auth/login" method="POST">
+
+      <div class="mb-4">
+
+        <label class="block mb-2 text-sm">
+          Email
+        </label>
+
+        <input
+          type="email"
+          name="email"
+          class="w-full border rounded-lg p-3"
+          placeholder="Input email"
+        />
+
+      </div>
+
+      <div class="mb-6">
+
+        <label class="block mb-2 text-sm">
+          Password
+        </label>
+
+        <input
+          type="password"
+          name="password"
+          class="w-full border rounded-lg p-3"
+          placeholder="Input password"
+        />
+
+      </div>
+
+      <button
+        type="submit"
+        class="w-full bg-slate-900 text-white p-3 rounded-lg"
+      >
+        Login
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
