@@ -39,6 +39,8 @@ exports.login = async (req, res) => {
     const admin =
       await Service.login(req.body)
 
+    console.log(admin)
+
     if (!admin) {
 
       return Render.view(
@@ -52,7 +54,11 @@ exports.login = async (req, res) => {
       )
     }
 
-    req.session.admin = admin
+    // Set token in cookie or return in response
+    res.cookie('token', admin.token, {
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000 // 24 hours
+    })
 
     return Render.redirect(
       res,
@@ -72,11 +78,28 @@ exports.login = async (req, res) => {
 
 exports.logout = async (req, res) => {
 
-  req.session.destroy(() => {
+  try {
+
+    const token = req.cookies.token
+
+    if (token) {
+      await Service.logout(token)
+    }
+
+    res.clearCookie('token')
 
     return Render.redirect(
       res,
       '/auth/login'
     )
-  })
+
+  } catch (err) {
+
+    console.log(err)
+
+    return Render.redirect(
+      res,
+      '/auth/login'
+    )
+  }
 }

@@ -16,13 +16,19 @@ const getServices = services => {
         service.tracking_code
 
       obj.customer_name =
-        service.customer_name
+        service.customer?.name || service.customer_name
 
       obj.customer_email =
-        service.customer_email
+        service.customer?.email || service.customer_email
 
       obj.customer_phone =
-        service.customer_phone
+        service.customer?.phone || service.customer_phone
+
+      obj.device_category =
+        service.device_category
+
+      obj.device_category_other =
+        service.device_category_other
 
       obj.device_name =
         service.device_name

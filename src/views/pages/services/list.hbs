@@ -24,6 +24,7 @@
         <tr>
           <th class="text-left p-4">Tracking</th>
           <th class="text-left p-4">Customer</th>
+          <th class="text-left p-4">Category</th>
           <th class="text-left p-4">Device</th>
           <th class="text-left p-4">Status</th>
           <th class="text-left p-4">Action</th>
@@ -43,6 +44,14 @@
 
           <td class="p-4">
             {{this.customer_name}}
+          </td>
+
+          <td class="p-4">
+            {{#if this.device_category_other}}
+              {{this.device_category_other}}
+            {{else}}
+              {{this.device_category}}
+            {{/if}}
           </td>
 
           <td class="p-4">

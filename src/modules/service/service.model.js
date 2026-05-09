@@ -13,15 +13,20 @@ const Service = sequelize.define('services', {
     type: Sequelize.STRING(255),
     allowNull: false
   },
-  customer_name: {
-    type: Sequelize.STRING(255),
+  customer_id: {
+    type: Sequelize.BIGINT,
+    allowNull: false,
+    references: {
+      model: 'customers',
+      key: 'id'
+    }
+  },
+  device_category: {
+    type: Sequelize.ENUM('laptop', 'smartphone', 'printer', 'monitor', 'televisi', 'lainnya'),
     allowNull: false
   },
-  customer_email: {
+  device_category_other: {
     type: Sequelize.STRING(255)
-  },
-  customer_phone: {
-    type: Sequelize.STRING(50)
   },
   device_name: {
     type: Sequelize.STRING(255)
@@ -37,5 +42,13 @@ const Service = sequelize.define('services', {
     defaultValue: 'pending'
   }
 })
+
+// Define associations
+Service.associate = (models) => {
+  Service.belongsTo(models.Customer, {
+    foreignKey: 'customer_id',
+    as: 'customer'
+  })
+}
 
 module.exports = Service

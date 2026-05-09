@@ -21,7 +21,7 @@ exports.indexPage = async (req, res) => {
       Helper.getServices(
         services
       )
-
+console.log(services)
     return Render.view(
       res,
       'pages/services/list',
@@ -70,7 +70,7 @@ exports.createPage = async (req, res) => {
 exports.store = async (req, res) => {
 
   try {
-
+ console.log(req.body)
     const validation =
       Validation.store(req.body)
 

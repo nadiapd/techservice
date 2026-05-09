@@ -1,0 +1,216 @@
+const Validation =
+  require('./admin.validation')
+
+const Service =
+  require('./admin.service')
+
+const Render =
+  require('../../helpers/render.helper')
+
+exports.indexPage = async (req, res) => {
+
+  try {
+
+    const admins =
+      await Service.getAll()
+
+    return Render.view(
+      res,
+      'pages/admins/list',
+      {
+        title: 'Admins',
+        layout: 'main',
+        admins
+      }
+    )
+
+  } catch (err) {
+
+    console.log(err)
+
+    return Render.redirect(
+      res,
+      '/dashboard'
+    )
+  }
+}
+
+exports.createPage = async (req, res) => {
+
+  try {
+
+    return Render.view(
+      res,
+      'pages/admins/create',
+      {
+        title: 'Create Admin',
+        layout: 'main'
+      }
+    )
+
+  } catch (err) {
+
+    console.log(err)
+
+    return Render.redirect(
+      res,
+      '/admins'
+    )
+  }
+}
+
+exports.store = async (req, res) => {
+
+  try {
+
+    const validation =
+      Validation.store(req.body)
+
+    if (validation.fails()) {
+
+      return Render.view(
+        res,
+        'pages/admins/create',
+        {
+          title: 'Create Admin',
+          layout: 'main',
+          errors: validation.errors.all(),
+          old: req.body
+        }
+      )
+    }
+
+    await Service.store(req.body)
+
+    return Render.redirect(
+      res,
+      '/admins'
+    )
+
+  } catch (err) {
+
+    console.log(err)
+
+    return Render.view(
+      res,
+      'pages/admins/create',
+      {
+        title: 'Create Admin',
+        layout: 'main',
+        errors: validation.errors.all(),
+        old: req.body
+      }
+    )
+  }
+}
+
+exports.editPage = async (req, res) => {
+
+  try {
+
+    const admin =
+      await Service.getById(req.params.id)
+
+    if (!admin) {
+
+      return Render.redirect(
+        res,
+        '/admins'
+      )
+    }
+
+    return Render.view(
+      res,
+      'pages/admins/edit',
+      {
+        title: 'Edit Admin',
+        layout: 'main',
+        admin
+      }
+    )
+
+  } catch (err) {
+
+    console.log(err)
+
+    return Render.redirect(
+      res,
+      '/admins'
+    )
+  }
+}
+
+exports.update = async (req, res) => {
+
+  try {
+
+    const validation =
+      Validation.update(req.body)
+
+    if (validation.fails()) {
+
+      const admin =
+        await Service.getById(req.params.id)
+
+      return Render.view(
+        res,
+        'pages/admins/edit',
+        {
+          title: 'Edit Admin',
+          layout: 'main',
+          errors: validation.errors.all(),
+          old: req.body,
+          admin
+        }
+      )
+    }
+
+    await Service.update(req.params.id, req.body)
+
+    return Render.redirect(
+      res,
+      '/admins'
+    )
+
+  } catch (err) {
+
+    console.log(err)
+
+    const admin =
+      await Service.getById(req.params.id)
+
+    return Render.view(
+      res,
+      'pages/admins/edit',
+      {
+        title: 'Edit Admin',
+        layout: 'main',
+        errors: validation.errors.all(),
+        old: req.body,
+        admin
+      }
+    )
+  }
+}
+
+exports.delete = async (req, res) => {
+
+  try {
+
+    await Service.delete(req.params.id)
+
+    return Render.redirect(
+      res,
+      '/admins'
+    )
+
+  } catch (err) {
+
+    console.log(err)
+
+    return Render.redirect(
+      res,
+      '/admins'
+    )
+  }
+}

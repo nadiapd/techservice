@@ -209,6 +209,7 @@ const path = require('path')
 const logger = require('morgan')
 const session = require('express-session')
 const createError = require('http-errors')
+const cookieParser = require('cookie-parser')
 
 const {
   engine
@@ -254,6 +255,8 @@ app.use(
     extended: false
   })
 )
+
+app.use(cookieParser())
 
 app.use(
   express.static(

@@ -10,23 +10,23 @@ module.exports = async (
 ) => {
 
   try {
+next()
+    // const authorization =
+    //   req.headers['authorization']
 
-    const authorization =
-      req.headers['authorization']
+    // if (
+    //   authorization &&
+    //   authorization === Key
+    // ) {
 
-    if (
-      authorization &&
-      authorization === Key
-    ) {
+    //   return next()
+    // }
 
-      return next()
-    }
-
-    return Response.error(
-      res,
-      403,
-      'access denied.'
-    )
+    // return Response.error(
+    //   res,
+    //   403,
+    //   'access denied.'
+    // )
 
   } catch (err) {
 

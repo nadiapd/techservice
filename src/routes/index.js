@@ -40,11 +40,17 @@ router.use(
   require('../modules/service/service.route')
 )
 
-// router.use(
-//   '/customers',
-//   authMiddleware,
-//   require('../modules/customer/customer.route')
-// )
+router.use(
+  '/customers',
+  authMiddleware,
+  require('../modules/customer/customer.route')
+)
+
+router.use(
+  '/admins',
+  authMiddleware,
+  require('../modules/admin/admin.route')
+)
 
 // router.use(
 //   '/categories',
